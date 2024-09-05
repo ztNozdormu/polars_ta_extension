@@ -1,6 +1,5 @@
 use crate::utils::{get_series_f64_ptr, ta_code2err};
 use polars::prelude::*;
-use pyo3_polars::derive::polars_expr;
 use talib::volume::{ta_ad, ta_obv, ta_adosc, ADOSCKwargs};
 
 fn obv(inputs: &[Series]) -> PolarsResult<Series> {

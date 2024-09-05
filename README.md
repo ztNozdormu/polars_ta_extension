@@ -2,7 +2,20 @@
 
 64位ta-lib安装：
 https://github.com/afnhsn/TA-Lib_x64
-
+clang最好默认安装方式防止后面找不到libclang.dll路径
+编译成功后ta-lib依赖文件：
+    talib-sys
+    - dependencies
+        - bin
+        ta-bin-config.in
+        - include
+        - ta-lib
+            - ta_abstract.h
+            - ta_common.h
+            - ta_defs.h
+            - ta_func.h
+            - ta_libc.h  
+ 系统环境 ta-lib下需要有ta_lib.lib;这个文件其实就是C:\ta-lib\c\lib\ta_libc_cdr.lib 改名而来【windows环境】 linux环境直接编译流程正常即可           
 ## Getting Started
 
 Rust Polars Extension for Ta-Lib
@@ -13,7 +26,7 @@ Features:
 Full compatibility with Ta-Lib 0.4.0: This release brings complete support for all functions provided by Ta-Lib 0.4.0, seamlessly integrated with polars expressions.
 
 Note :
-whether the system is 32-bit or 64-bit, and select the corresponding ta-lib installation package
+ whether the system is 32-bit or 64-bit, and select the corresponding ta-lib installation package
 
 
 ## Usage

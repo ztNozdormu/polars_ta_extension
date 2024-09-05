@@ -6,10 +6,10 @@ use std::io::{Cursor, Read};
 use std::process::Command;
 use std::{io::Write, path::PathBuf};
 
-// const TA_LIB_VER: &str = "0.4.0";
+// const TA_LIB_VER: &str = "0.4.0";  // mac或者linux环境
 // const TA_LIB_TGZ: &str = "ta-lib-0.4.0-src.tar.gz";
- const TA_LIB_BIT: &str = "x64";
-
+ const TA_LIB_VER: &str = "x64";  // windows
+// const TA_LIB_BIT: &str = "x32";
 #[derive(Debug)]
 struct DerivesCallback;
 
@@ -40,7 +40,7 @@ impl ParseCallbacks for DerivesCallback {
 
 fn main() {
     #[cfg(target_os = "windows")]
-    let ta_lib_gz = format!("ta-lib-{TA_LIB_BIT}.zip");
+    let ta_lib_gz = format!("ta-lib-{TA_LIB_VER}.zip");
     #[cfg(target_os = "windows")]
     let ta_lib_url = format!("https://github.com/ztNozdormu/polars_ta_extension/releases/download/0.1.0/{ta_lib_gz}");
     #[cfg(target_family = "unix")]
