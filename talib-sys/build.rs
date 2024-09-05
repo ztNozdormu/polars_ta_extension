@@ -73,7 +73,7 @@ fn main() {
     if !lib_path.exists() {
         let mut file_gz = std::fs::File::open(file_gz_path).unwrap();
         if os == "windows" {
-            // ta_lib.lib 是
+            // ta_lib.lib和C:\ta-lib\c\lib\ta_libc_cdr.lib 是同一个文件
             if !lib_path.join("ta_lib.lib").exists() {
                 let metadata = std::fs::File::metadata(&file_gz).expect("unable to read metadata");
                 let mut buf = vec![0; metadata.len() as usize];
