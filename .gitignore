@@ -13,7 +13,7 @@ Cargo.lock
 # MSVC Windows builds of rustc generate these, which store debugging information
 *.pdb
 dependencies
-
+talib-sys/src/bindings.rs
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
