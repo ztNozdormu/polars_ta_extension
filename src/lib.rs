@@ -1,7 +1,7 @@
 mod cycle;
 mod math;
 mod momentum;
-mod overlap;
+pub mod overlap;
 mod pattern;
 mod statistic;
 mod transform;
