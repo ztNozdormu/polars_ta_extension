@@ -1,6 +1,5 @@
 use crate::utils::{get_series_f64_ptr, ta_code2err};
 use polars::prelude::*;
-use pyo3_polars::derive::polars_expr;
 use talib::common::TimePeriodKwargs;
 use talib::overlap::{
     ta_bbands, ta_dema, ta_ema, ta_ht_trendline, ta_kama, ta_ma, ta_mama, ta_mavp, ta_midpoint,
@@ -16,7 +15,6 @@ pub fn bbands_output(_: &[Field]) -> PolarsResult<Field> {
     Ok(Field::new("", DataType::Struct(v)))
 }
 
-#[polars_expr(output_type_func=bbands_output)]
 fn bbands(inputs: &[Series], kwargs: BBANDSKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -34,7 +32,6 @@ fn bbands(inputs: &[Series], kwargs: BBANDSKwargs) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn ema(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -49,7 +46,6 @@ fn ema(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn dema(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -61,7 +57,6 @@ fn dema(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn ht_trendline(inputs: &[Series]) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -73,7 +68,6 @@ fn ht_trendline(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn kama(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -85,7 +79,6 @@ fn kama(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn ma(inputs: &[Series], kwargs: MaKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -104,7 +97,6 @@ pub fn mama_output(_: &[Field]) -> PolarsResult<Field> {
     Ok(Field::new("", DataType::Struct(v)))
 }
 
-#[polars_expr(output_type_func=mama_output)]
 fn mama(inputs: &[Series], kwargs: MamaKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -121,7 +113,6 @@ fn mama(inputs: &[Series], kwargs: MamaKwargs) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn mavp(inputs: &[Series], kwargs: MavpKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let in_time_period = &mut inputs[1].to_float()?.rechunk();
@@ -135,7 +126,6 @@ fn mavp(inputs: &[Series], kwargs: MavpKwargs) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn midpoint(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -147,7 +137,6 @@ fn midpoint(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series>
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn midprice(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     let high = &mut inputs[0].to_float()?.rechunk();
     let low = &mut inputs[1].to_float()?.rechunk();
@@ -161,7 +150,6 @@ fn midprice(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series>
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn sar(inputs: &[Series], kwargs: SarKwargs) -> PolarsResult<Series> {
     let high = &mut inputs[0].to_float()?.rechunk();
     let low = &mut inputs[1].to_float()?.rechunk();
@@ -175,7 +163,6 @@ fn sar(inputs: &[Series], kwargs: SarKwargs) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn sarext(inputs: &[Series], kwargs: SarExtKwargs) -> PolarsResult<Series> {
     let high = &mut inputs[0].to_float()?.rechunk();
     let low = &mut inputs[1].to_float()?.rechunk();
@@ -189,7 +176,6 @@ fn sarext(inputs: &[Series], kwargs: SarExtKwargs) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn sma(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (in_real_ptr, _in_real) = get_series_f64_ptr(input)?;
@@ -201,7 +187,6 @@ fn sma(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn t3(inputs: &[Series], kwargs: T3Kwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (in_real_ptr, _in_real) = get_series_f64_ptr(input)?;
@@ -213,7 +198,6 @@ fn t3(inputs: &[Series], kwargs: T3Kwargs) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn tema(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (in_real_ptr, _in_real) = get_series_f64_ptr(input)?;
@@ -225,7 +209,6 @@ fn tema(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn trima(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (in_real_ptr, _in_real) = get_series_f64_ptr(input)?;
@@ -237,7 +220,6 @@ fn trima(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn wma(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (in_real_ptr, _in_real) = get_series_f64_ptr(input)?;

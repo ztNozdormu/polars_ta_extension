@@ -1,9 +1,7 @@
 use crate::utils::{get_series_f64_ptr, ta_code2err};
 use polars::prelude::*;
-use pyo3_polars::derive::polars_expr;
 use talib::volatility::{ta_natr, NATRKwargs, ta_atr, ATRKwargs, ta_trange};
 
-#[polars_expr(output_type=Float64)]
 fn atr(inputs: &[Series], kwargs: ATRKwargs) -> PolarsResult<Series> {
     let close = &mut inputs[0].to_float()?.rechunk();
     let high = &mut inputs[1].to_float()?.rechunk();
@@ -19,7 +17,6 @@ fn atr(inputs: &[Series], kwargs: ATRKwargs) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn trange(inputs: &[Series]) -> PolarsResult<Series> {
     let close = &mut inputs[0].to_float()?.rechunk();
     let high = &mut inputs[1].to_float()?.rechunk();
@@ -35,7 +32,6 @@ fn trange(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn natr(inputs: &[Series], kwargs: NATRKwargs) -> PolarsResult<Series> {
     let close = &mut inputs[0].to_float()?.rechunk();
     let high = &mut inputs[1].to_float()?.rechunk();

@@ -3,7 +3,6 @@ use polars::prelude::*;
 use pyo3_polars::derive::polars_expr;
 use talib::volume::{ta_ad, ta_obv, ta_adosc, ADOSCKwargs};
 
-#[polars_expr(output_type=Float64)]
 fn obv(inputs: &[Series]) -> PolarsResult<Series> {
     let close = &mut inputs[0].to_float()?.rechunk();
     let volume = &mut inputs[1].to_float()?.rechunk();
@@ -17,7 +16,6 @@ fn obv(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn ad(inputs: &[Series]) -> PolarsResult<Series> {
     let high = &mut inputs[1].to_float()?.rechunk();
     let low = &mut inputs[2].to_float()?.rechunk();
@@ -35,7 +33,6 @@ fn ad(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn adosc(inputs: &[Series], kwargs: ADOSCKwargs) -> PolarsResult<Series> {
     let close = &mut inputs[0].to_float()?.rechunk();
     let high = &mut inputs[1].to_float()?.rechunk();

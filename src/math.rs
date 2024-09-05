@@ -1,6 +1,5 @@
 use crate::utils::{get_series_f64_ptr, ta_code2err};
 use polars::prelude::*;
-use pyo3_polars::derive::polars_expr;
 use talib::common::TimePeriodKwargs;
 use talib::math::{
     ta_add, ta_div, ta_max, ta_maxindex, ta_min, ta_minindex, ta_minmax, ta_minmaxindex, ta_mult,
@@ -12,7 +11,6 @@ use talib::math::{
     ta_sinh, ta_sqrt, ta_tan, ta_tanh,
 };
 
-#[polars_expr(output_type=Float64)]
 fn add(inputs: &[Series]) -> PolarsResult<Series> {
     let input1 = &mut inputs[0].to_float()?.rechunk();
     let input2 = &mut inputs[1].to_float()?.rechunk();
@@ -26,7 +24,6 @@ fn add(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn div(inputs: &[Series]) -> PolarsResult<Series> {
     let input1 = &mut inputs[0].to_float()?.rechunk();
     let input2 = &mut inputs[1].to_float()?.rechunk();
@@ -40,7 +37,6 @@ fn div(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn max(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -52,7 +48,6 @@ fn max(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Int32)]
 fn maxindex(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -64,7 +59,6 @@ fn maxindex(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series>
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn min(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -76,7 +70,6 @@ fn min(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Int32)]
 fn minindex(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -95,7 +88,6 @@ pub fn minmax_output(_: &[Field]) -> PolarsResult<Field> {
     Ok(Field::new("", DataType::Struct(v)))
 }
 
-#[polars_expr(output_type_func=minmax_output)]
 fn minmax(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -120,7 +112,6 @@ pub fn minmaxindex_output(_: &[Field]) -> PolarsResult<Field> {
     Ok(Field::new("", DataType::Struct(v)))
 }
 
-#[polars_expr(output_type_func=minmaxindex_output)]
 fn minmaxindex(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -138,7 +129,6 @@ fn minmaxindex(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Seri
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn mult(inputs: &[Series]) -> PolarsResult<Series> {
     let input1 = &mut inputs[0].to_float()?.rechunk();
     let input2 = &mut inputs[1].to_float()?.rechunk();
@@ -152,7 +142,6 @@ fn mult(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn sub(inputs: &[Series]) -> PolarsResult<Series> {
     let input1 = &mut inputs[0].to_float()?.rechunk();
     let input2 = &mut inputs[1].to_float()?.rechunk();
@@ -166,7 +155,6 @@ fn sub(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn sum(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -179,7 +167,6 @@ fn sum(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn acos(inputs: &[Series]) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -195,7 +182,6 @@ fn acos(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn asin(inputs: &[Series]) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -211,7 +197,6 @@ fn asin(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn atan(inputs: &[Series]) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -227,7 +212,6 @@ fn atan(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn ceil(inputs: &[Series]) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -243,7 +227,6 @@ fn ceil(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn cos(inputs: &[Series]) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -259,7 +242,6 @@ fn cos(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn cosh(inputs: &[Series]) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -275,7 +257,6 @@ fn cosh(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn exp(inputs: &[Series]) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -288,7 +269,6 @@ fn exp(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn floor(inputs: &[Series]) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -301,7 +281,6 @@ fn floor(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn ln(inputs: &[Series]) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -314,7 +293,6 @@ fn ln(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn log10(inputs: &[Series]) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -327,7 +305,6 @@ fn log10(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn sin(inputs: &[Series]) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -340,7 +317,6 @@ fn sin(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn sinh(inputs: &[Series]) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -353,7 +329,6 @@ fn sinh(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn sqrt(inputs: &[Series]) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -366,7 +341,6 @@ fn sqrt(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn tan(inputs: &[Series]) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
@@ -379,7 +353,6 @@ fn tan(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn tanh(inputs: &[Series]) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;

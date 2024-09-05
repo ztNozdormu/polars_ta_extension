@@ -1,12 +1,10 @@
 use crate::utils::{get_series_f64_ptr, ta_code2err};
 use polars::prelude::*;
-use pyo3_polars::derive::polars_expr;
 use talib::transform::ta_avgprice;
 use talib::transform::ta_medprice;
 use talib::transform::ta_typprice;
 use talib::transform::ta_wclprice;
 
-#[polars_expr(output_type=Float64)]
 fn avgprice(inputs: &[Series]) -> PolarsResult<Series> {
     let open = &mut inputs[0].to_float()?.rechunk();
     let high = &mut inputs[1].to_float()?.rechunk();
@@ -24,7 +22,6 @@ fn avgprice(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn medprice(inputs: &[Series]) -> PolarsResult<Series> {
     let high = &mut inputs[0].to_float()?.rechunk();
     let low = &mut inputs[1].to_float()?.rechunk();
@@ -38,7 +35,6 @@ fn medprice(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn typprice(inputs: &[Series]) -> PolarsResult<Series> {
     let high = &mut inputs[1].to_float()?.rechunk();
     let low = &mut inputs[2].to_float()?.rechunk();
@@ -54,7 +50,6 @@ fn typprice(inputs: &[Series]) -> PolarsResult<Series> {
     }
 }
 
-#[polars_expr(output_type=Float64)]
 fn wclprice(inputs: &[Series]) -> PolarsResult<Series> {
     let high = &mut inputs[1].to_float()?.rechunk();
     let low = &mut inputs[2].to_float()?.rechunk();
