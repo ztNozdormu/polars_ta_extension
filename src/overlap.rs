@@ -32,7 +32,7 @@ fn bbands(inputs: &[Series], kwargs: BBANDSKwargs) -> PolarsResult<Series> {
     }
 }
 
-fn ema(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
+pub fn ema(inputs: &[Series], kwargs: TimePeriodKwargs) -> PolarsResult<Series> {
     let input = &mut inputs[0].to_float()?.rechunk();
     let (input_ptr, _input) = get_series_f64_ptr(input)?;
     let len = input.len();
