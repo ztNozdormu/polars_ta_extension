@@ -1,14 +1,14 @@
-mod cycle;
-mod math;
-mod momentum;
+pub mod cycle;
+pub mod math;
+pub mod momentum;
 pub mod overlap;
-mod pattern;
-mod statistic;
-mod transform;
-mod utils;
-mod volatility;
-mod volume;
-use talib::common::{ta_initialize, ta_shutdown, ta_version};
+pub mod pattern;
+pub mod statistic;
+pub mod transform;
+pub mod utils;
+pub mod volatility;
+pub mod volume;
+pub use talib::common::{ta_initialize, ta_shutdown, ta_version};
 // use talib_sys::{TA_Initialize, TA_Shutdown, TA_RetCode};
 
 #[cfg(target_os = "linux")]
