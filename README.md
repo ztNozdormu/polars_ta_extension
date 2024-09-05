@@ -11,7 +11,9 @@ I'm excited to announce the release of version 0.1.0 for the Polars Extension fo
 
 Features:
 Full compatibility with Ta-Lib 0.4.0: This release brings complete support for all functions provided by Ta-Lib 0.4.0, seamlessly integrated with polars expressions.
-Note whether the system is 32-bit or 64-bit, and select the corresponding ta-lib installation package
+
+Note :
+whether the system is 32-bit or 64-bit, and select the corresponding ta-lib installation package
 
 
 ## Usage
