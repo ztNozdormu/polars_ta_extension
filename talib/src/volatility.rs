@@ -7,7 +7,7 @@ use talib_sys::{
 
 #[derive(Deserialize)]
 pub struct ATRKwargs {
-    timeperiod: i32,
+   pub timeperiod: i32,
 }
 
 pub fn ta_atr(
@@ -98,7 +98,7 @@ pub fn ta_trange(
 
 #[derive(Deserialize)]
 pub struct NATRKwargs {
-    timeperiod: i32,
+   pub timeperiod: i32,
 }
 
 pub fn ta_natr(
