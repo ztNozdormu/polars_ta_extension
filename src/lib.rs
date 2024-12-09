@@ -9,6 +9,7 @@ pub mod utils;
 pub mod volatility;
 pub mod volume;
 pub use talib::common::{ta_initialize, ta_shutdown, ta_version,TimePeriodKwargs};
+pub use talib::volatility::{ATRKwargs,NATRKwargs};
 // use talib_sys::{TA_Initialize, TA_Shutdown, TA_RetCode};
 pub use polars::*;
 
