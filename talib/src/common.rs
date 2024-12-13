@@ -34,7 +34,7 @@ pub fn ta_version() -> String {
 }
 
 
-#[derive(Deserialize)]
+#[derive(Deserialize,Clone)]
 pub struct TimePeriodKwargs {
     pub timeperiod: i32,
 }
