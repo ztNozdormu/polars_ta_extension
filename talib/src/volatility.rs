@@ -5,7 +5,7 @@ use talib_sys::{
     TA_TRANGE,
 };
 
-#[derive(Deserialize)]
+#[derive(Deserialize,Clone)]
 pub struct ATRKwargs {
    pub timeperiod: i32,
 }
@@ -96,7 +96,7 @@ pub fn ta_trange(
     }
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize,Clone)]
 pub struct NATRKwargs {
    pub timeperiod: i32,
 }
