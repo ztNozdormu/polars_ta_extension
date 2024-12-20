@@ -12,7 +12,8 @@ Cargo.lock
 
 # MSVC Windows builds of rustc generate these, which store debugging information
 *.pdb
-# dependencies
+# windows环境初始化没有这个包可以注释(线上仓库已经存在可以解开注释不体检本地生成的文件,linux系统不需要,所以这里一般不注释)
+dependencies 
 
 
 # Byte-compiled / optimized / DLL files
